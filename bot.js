@@ -1,4 +1,4 @@
-const Telegraf = require('telegraf');
+const { Telegraf,Telegram  } = require('telegraf')
 var fs = require("fs");
 const config = require("./config")
 const telegram = new Telegram(config.token)
