@@ -21,7 +21,11 @@ var questionNumber = -1;
 var isQuestionActive = false;
 var scoreboardHasExpired = true;
 var questionTimeout = undefined;
-
+bot.start(ctx=>{
+    bot.telegram.sendMessage(
+        ctx.chat.id,
+        "👨🏻 Salam!\n\nSizin komanda adı Komandasının hazırladığı botları bir botda cəmləyən botam.İstədiyiniz bot haqqında burdan baxa bilər, qrupunuza qata bilər və başlada bilərsiniz",
+        }
 bot.command('scoreboard', ScoreBoardCommandHandler);
 bot.use(async (ctx, next) => {
     if (isGameOn) {
