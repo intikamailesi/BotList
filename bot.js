@@ -1,6 +1,8 @@
 const Telegraf = require('telegraf');
 var fs = require("fs");
-const bot = new Telegraf("5234928009:AAGeQiP1qG8kMTGfJMMWeWkUKYJvSmrTzdg")
+const config = require("./config")
+const telegram = new Telegram(config.token)
+const bot = new Telegraf(config.token)
 
 const Timeouts = {
     HELLO: 1000,
