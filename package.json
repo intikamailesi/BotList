@@ -1,23 +1,15 @@
 {
-  "name": "botlist",
+  "name": "telegrambot",
   "version": "1.0.0",
   "description": "",
   "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/goqerti/botlist.git"
-  },
-  "keywords": [],
-  "author": "Sirvhan",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/goqerti/botlist/issues"
-  },
-  "homepage": "https://github.com/goqerti/botlist#readme",
   "dependencies": {
-    "telegraf": "^4.4.1"
+    "telebot": "^1.2.6",
+    "telegraf": "^3.25.5"
   }
 }
