@@ -1,124 +1,145 @@
-// Bu Bot t.me/Sirvhan tərəfindən kodlanmışdır.
-// Credits verdiyiniz halda istifadə edə bilərsiniz.
+const Telegraf = require('telegraf');
+var fs = require("fs");
+const bot = new Telegraf("5234928009:AAGeQiP1qG8kMTGfJMMWeWkUKYJvSmrTzdg")
 
-const { Telegraf,Telegram  } = require('telegraf')
-const config = require("./config")
-const telegram = new Telegram(config.token)
-const bot = new Telegraf(config.token)
+const Timeouts = {
+    HELLO: 1000,
+    GET_READY: 2000,
+    QUESTION: 30000,
+    NEXT_QUESTION: 25000,
+    SCOREBOARD_TIMEOUT: 15000
+}
 
-bot.start(ctx=>{
-    bot.telegram.sendMessage(
-        ctx.chat.id,
-        "👨🏻 Salam!\n\nSizin komanda adı Komandasının hazırladığı botları bir botda cəmləyən botam.İstədiyiniz bot haqqında burdan baxa bilər, qrupunuza qata bilər və başlada bilərsiniz",
-        {
-            reply_markup: {
-                inline_keyboard: [
-                    [{text: "Botlarımız 👨🏻‍💻",callback_data: "bot"},{text: "Haqqımızda ℹ",callback_data: "haqqimizda"}],
-                    [{text: "Kanalımız 🇦🇿",url: "https://t.me/sizinkanal"}]
-                ]
-            }
-        }
-    )
-})
-bot.action("haqqimizda",ctx=>{
-    bot.telegram.sendMessage(
-        ctx.chat.id,
-        "Biz Sizin komanda adı Komandası olaraq sizlər üçün, yeni botlar hazırlayır, hazırladığı bot'larını təkminləşdirib yeni güncəlləmələr hazırlayır✅\n\nGizlilik haqqında məlumat almaq üçün aşağıdakı buttona klik et🛎",
-        {
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: "🛎 Gizlilik", callback_data: "gizlilik" }],
-                    [{ text: "👨🏻 Ana Səhifə", callback_data: "yenidenstart" }],
-                ]
-            }
-        }
-    )
-})
-bot.action("gizlilik",ctx=>{
-    bot.telegram.sendMessage(
-        ctx.chat.id,
-        "Botlarımızdan istifadə edənlərdə çox yaxşı bilirki botlarımız tamamilə güvənlidir✅\nBiz yalnız sizlər üçün işləyirik heç bir federasiya yaxud birləşmə ilə düşmən deyilik yaxud bundan sonrada heçkimlə düşmən olmuyacıq✅\nBizim botlarda qrup sıfırlama yaxud başqa qruplara ziyan verici hərəkətlər görə bilmərsiniz və görməyəcəksiniz🛎\n\nSizlərdən aldığımız məlumatlar hərkəsin əldə edəcəyi məlumatlardı🙂\nℹ CHAT İD\nℹ USER İD",
-        {
-         reply_markup: {
-                inline_keyboard: [
-                    [{ text: "👨🏻 Ana Səhifə", callback_data: "yenidenstart" }],
-                    [{ text: "Kanalımız✅", url: "https://t.me/sizinkanal" }],
-                ]
-            }
-        }
-    )
-})
-bot.action("yenidenstart",ctx=>{
-    bot.telegram.sendMessage(
-        ctx.chat.id,
-        "👨🏻 Salam!\n\nMən Crazy Komandasının hazırladığı botları bir botda cəmləyən botam.İstədiyiniz bot haqqında burdan baxa bilər, qrupunuza qata bilər və başlada bilərsiniz.",
-        {
-            reply_markup: {
-                inline_keyboard: [
-                    [{text: "Botlarımız 👨🏻‍💻",callback_data: "bot"},{text: "Haqqımızda ℹ",callback_data: "haqqimizda"}],
-                    [{text: "Kanalımız 🇦🇿",url: "https://t.me/sizinkanal"}]
-                ]
-            }
-        }
-    )
-})
-// İstədiyiniz kimi button artıra bilərsiniz nodejs bilmirsinizsə, @Sirvhan yazın kömək edək.
-bot.action("bot",ctx=>{
-    bot.telegram.sendMessage(
-        ctx.chat.id,
-        "🤖 Hansı bot haqqında məlumat almaq istəyirsiniz?",
-        {
-            reply_markup: {
-                inline_keyboard: [
-                    [{text: "🎮 Sizin oyun bot adı",callback_data: "game"},{text: "🇦🇿 Sizin Music bot",callback_data: "music"}],
-                    [{text: "Kanalımız 🇦🇿",url: "https://t.me/sizinkanal"}]
-                ]
-            }
-        }
-    )
-})
-bot.action("music",ctx=>{
-    bot.telegram.sendMessage(
-        ctx.chat.id,
-        "Sizin Music sizlərə qruplarınızda rahat və sürətli musiqi dinləməyə kömək edir✅\n\nƏlavə məlumat üçün kömək buttonuna klik edin.",
-        {
-            reply_markup: {
-                inline_keyboard: [
-                    [{text: "👨🏻 Ana Səhifə",callback_data: "yenidenstart"},{text: "Kömək ℹ",url: "https://t.me/sizinbotadı?start"}],
-                    [{text: "Bot'u qruplarınıza Əlavə edin✅",url: "https://t.me/sizinbotadı?startgroup=a"}]
-                ]
-            }
-        }
-    )
-})
-bot.action("game",ctx=>{
-    bot.telegram.sendMessage(
-        ctx.chat.id,
-        "SİZİN BOT ADI ilə qruplarınızda maraqlı oyun oynaya bilərsiniz✅\n\nƏlavə məlumat üçün kömək buttonuna klik edin.",
-        {
-            reply_markup: {
-                inline_keyboard: [
-                    [{text: "👨🏻 Ana Səhifə",callback_data: "yenidenstart"},{text: "Kömək ℹ",url: "https://t.me/sizinbotadı?start"}],
-                    [{text: "Bot'u qruplarınıza Əlavə edin✅",url: "https://t.me/sizinbotadı?startgroup=a"}]
-                ]
-            }
-        }
-    )
-})
+var questions = [];
+var players = [];
+var chat_id = -366641537; // CHAT ID
+var isGameOn = false;
+var current_question = undefined;
+var questionNumber = -1;
+var isQuestionActive = false;
+var scoreboardHasExpired = true;
+var questionTimeout = undefined;
 
-//xətaları göstərsin
-bot.catch((err) => {
-    console.log('Error: ', err)
-})
+bot.command('scoreboard', ScoreBoardCommandHandler);
+bot.use(async (ctx, next) => {
+    if (isGameOn) {
+        console.log("nextt");
+        next();
+    } else {
+        console.log("yuttumm");
+    }
+});
+bot.command("Join", PlayerCatcher);
+bot.command("join", PlayerCatcher);
+bot.hears(GameLogic);
+bot.on("error", er => { console.log(er); })
+bot.startPolling();
 
-// Botun nickname alan kod
-bot.telegram.getMe().then(botInfo => {
-    bot.options.username = botInfo.username
-    console.log(`Bot Aktif Oldu => ${bot.options.username}`)
-})
+Initiate();
 
-bot.launch()
 
-// Bu, botumuzu yavaşca dayandırmağa imkan verir.
-process.once('SIGINT', () => bot.stop('SIGINT'))
-process.once('SIGTERM', () => bot.stop('SIGTERM'))
+function Initiate() {
+    fs.readFile("questions.json", 'utf-8', function (err, content) {
+        if (err) {
+            console.log("Dosya okunamadı", err);
+            return;
+        }
+        questions = JSON.parse(content);
+        if (!questions.length) {
+            console.log("soru yok!!"); return;
+        }
+        StartGame();
+    });
+}
+
+function StartGame() {
+    isGameOn = true;
+    setTimeout(
+        () => {
+            SendMessage(`Herkese selam Yarış birazdan başlamak üzere. Hazır olun ve flüt yapmayın(${Timeouts.NEXT_QUESTION/1000}saniye)`);
+            SendMessage("Lütfen Yarışmaya katılmak için /join  yazın");
+            NextQuestion();
+        }
+        , Timeouts.HELLO);
+
+}
+
+function EndGame() {
+    SendMessage("Oyun bitti Puan durumu -->");
+    ScoreBoard();
+    questionNumber = -1;
+    isGameOn = false;
+    isQuestionActive = false;
+}
+function QuestionTimeout() {
+    SendMessage(`Kimse soruyu yanıtlayamadı :(:(\n Cevap "${current_question.answers[0]}" olacaktı`);
+    isQuestionActive = false;
+    NextQuestion();
+}
+function SendMessage(message) {
+    bot.telegram.sendMessage(chat_id, `▶️${message}`, { parse_mode: 'Markdown' });
+}
+function NextQuestion() {
+    questionNumber = questionNumber + 1;
+    if (questionNumber == questions.length) {
+        EndGame();
+        return;
+    }
+    SendMessage(`${questionNumber + 1}. Soru Geliyor Hazırlan!!!`);
+    setTimeout(() => {
+        current_question = questions[questionNumber];
+        SendMessage(`✨Soru ${questionNumber + 1} (${current_question.point} Puan)✨\n >>> *${current_question.question}*`);
+        isQuestionActive = true;
+        questionTimeout = setTimeout(QuestionTimeout, Timeouts.QUESTION);
+    }, Timeouts.NEXT_QUESTION);
+}
+function PlayerCatcher(ctx) {
+    var from = ctx.message.from;
+    if (!players.filter(p => p.id == from.id).length) {
+        var new_player = {
+            id: from.id,
+            first_name: from.first_name,
+            last_name: from.last_name,
+            username: from.username,
+            point: 0
+        };
+        console.log("new player added", new_player.username);
+        SendMessage(`[${new_player.first_name}](tg://user?id=${new_player.id}) yarışa katıldı !`);
+        players.push(new_player);
+    }
+};
+function GameLogic(prediction, ctx) {
+    console.log(prediction, ctx.message);
+    const index = players.findIndex(p => p.id == ctx.message.from.id);
+    if (isGameOn && isQuestionActive && index != -1) {
+        if (current_question.answers.map(l=>l.toLowerCase()).indexOf(prediction.trim().toLowerCase()) != -1) {
+            clearTimeout(questionTimeout);
+            isQuestionActive=false;
+            const index = players.findIndex(p => p.id == ctx.message.from.id);
+            players[index].point = players[index].point + current_question.point;
+            var message = `👏👏Tebrikler [${players[index].first_name}](tg://user?id=${players[index].id})  ${current_question.point} puan kazandınız!!👏👏`;
+            SendMessage(message);
+            NextQuestion();
+        }
+    }
+};
+function ScoreBoard() {
+    var sortedList = players.sort((a, b) => b.point - a.point);
+    var scoreBoardMessage = sortedList.map((row, i) => {
+        var username = `[${row.first_name}](tg://user?id=${row.id})`;
+        text = `${i + 1}-\t${username}\t_${row.point} Point_`;
+        return text;
+    }).join("\n").replace('1', '🏆');
+    SendMessage(scoreBoardMessage);
+    scoreboardHasExpired = false;
+    setTimeout(() => scoreboardHasExpired = true, Timeouts.SCOREBOARD_TIMEOUT);
+}
+function ScoreBoardCommandHandler(ctx) {
+    if (scoreboardHasExpired) {
+        ScoreBoard();
+    }
+    else {
+        SendMessage("_!!Flüt yapmayın!!_");
+    }
+}
+
