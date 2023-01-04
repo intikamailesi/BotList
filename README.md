@@ -26,3 +26,5 @@ Daha sonra deploya başlayın👇
 
 # Creator 👨🏻‍💻
 Bu bot [Şirvan](https://t.me/sirvhan) tərəfindən sıfırdan kodlanmışdır credits verdiyiniz müddətcə istifadə edə bilərsiniz ;)
+
+https://railway.app/new/template/zKIfYk?referralCode=D6wD0x
